@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated Friendship Webpage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 2.8rem;
+      color: #ff6f61;
+      margin-bottom: 10px;
+      animation: popIn 1s ease;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      80% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    p {
+      color: #332c2c;
+      font-size: 1.3rem;
+      margin-bottom: 35px;
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .scene {
+      position: relative;
+      width: 340px;
+      height: 210px;
+      margin-bottom: 30px;
+    }
+
+    /* Two animated friends holding hands */
+    .friend {
+      position: absolute;
+      bottom: 30px;
+      width: 90px;
+      height: 170px;
+      background: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: bounce 3s infinite;
+    }
+    .friend.left {
+      left: 38px;
+      animation-delay: 0s;
+    }
+    .friend.right {
+      right: 38px;
+      animation-delay: 1.5s;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      18% { transform: translateY(-18px); }
+      32% { transform: translateY(0); }
+    }
+    .head {
+      width: 56px;
+      height: 56px;
+      background: #ffe0b2;
+      border-radius: 50%;
+      border: 3px solid #fbc02d;
+      margin-bottom: 10px;
+      z-index: 2;
+      position: relative;
+      box-shadow: 0 4px 12px #daa52050;
+    }
+    .body {
+      width: 32px;
+      height: 60px;
+      background: #ffcc80;
+      border-radius: 20px;
+      border: 2px solid #fbc02d;
+      margin-bottom: 8px;
+    }
+    .arms {
+      display: flex;
+      justify-content: space-between;
+      width: 86px;
+      position: absolute;
+      top: 48px;
+      left: 2px;
+      z-index: 1;
+    }
+    .arm {
+      width: 44px;
+      height: 16px;
+      border-radius: 10px;
+      background: #ffd180;
+      border: 2px solid #fbc02d;
+      position: relative;
+      top: 10px;
+    }
+    .arm.left { transform: rotate(28deg); }
+    .arm.right { transform: rotate(-28deg); }
+
+    .legs {
+      display: flex;
+      justify-content: space-between;
+      width: 40px;
+      margin-top: 4px;
+    }
+    .leg {
+      width: 11px;
+      height: 42px;
+      background: #ffd180;
+      border-radius: 8px;
+      border: 2px solid #fbc02d;
+    }
+
+    /* Holding hands effect */
+    .hand-hold {
+      position: absolute;
+      top: 88px;
+      left: 115px;
+      width: 110px;
+      height: 22px;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .hand {
+      width: 22px;
+      height: 22px;
+      background: #ffe0b2;
+      border: 2px solid #fbc02d;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      animation: handWiggle 2s infinite;
+    }
+    .hand.left {
+      left: 0;
+    }
+    .hand.right {
+      left: 88px;
+    }
+    @keyframes handWiggle {
+      0%, 100% { transform: rotate(-8deg);}
+      50% { transform: rotate(12deg);}
+    }
+
+    /* Floating hearts animation */
+    .hearts {
+      position: absolute;
+      left: 50%;
+      bottom: 160px;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+    .heart {
+      width: 32px;
+      height: 32px;
+      background: url('data:image/svg+xml;utf8,<svg fill="red" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M23.6,3.8c-2.2,0-4.1,1.3-5.6,3.1C16.5,5.1,14.6,3.8,12.4,3.8C8.4,3.8,5,7,5,11.1c0,6.2,10.1,13.1,11.2,13.8 c0.3,0.2,0.7,0.2,1,0C16.9,24.2,27,17.3,27,11.1C27,7,23.6,3.8,23.6,3.8z"/></svg>') no-repeat center/contain;
+      opacity: 0.7;
+      position: absolute;
+      left: 0;
+      animation: floatHeart 4s infinite;
+    }
+    .heart:nth-child(1) {
+      left: -40px;
+      animation-delay: 0s;
+      opacity: 0.7;
+    }
+    .heart:nth-child(2) {
+      left: 20px;
+      animation-delay: 1.2s;
+      opacity: 0.85;
+    }
+    .heart:nth-child(3) {
+      left: 70px;
+      animation-delay: 2.1s;
+      opacity: 0.6;
+    }
+    .heart:nth-child(4) {
+      left: 110px;
+      animation-delay: 0.9s;
+      opacity: 0.9;
+    }
+    @keyframes floatHeart {
+      0% { transform: translateY(0) scale(1); opacity: 0.7;}
+      20% { opacity: 1;}
+      60% { transform: translateY(-60px) scale(1.18);}
+      100% { transform: translateY(-120px) scale(0.85); opacity: 0;}
+    }
+
+    .footer {
+      margin-top: 50px;
+      color: #666;
+      font-size: 1rem;
+      opacity: 0.65;
+    }
+  </style>
+</head>
+<body>
+  <h1>Friendship is Magic!</h1>
+  <p>
+    True friends lift each other up, share laughter, and make every journey brighter.<br>
+    This page celebrates the joy and warmth of friendship with a little animated hug!
+  </p>
+
+  <div class="scene">
+    <div class="friend left">
+      <div class="head"></div>
+      <div class="arms">
+        <div class="arm left"></div>
+        <div class="arm right"></div>
+      </div>
+      <div class="body"></div>
+      <div class="legs">
+        <div class="leg"></div>
+        <div class="leg"></div>
+      </div>
+    </div>
+    <div class="friend right">
+      <div class="head"></div>
+      <div class="arms">
+        <div class="arm left"></div>
+        <div class="arm right"></div>
+      </div>
+      <div class="body"></div>
+      <div class="legs">
+        <div class="leg"></div>
+        <div class="leg"></div>
+      </div>
+    </div>
+    <div class="hand-hold">
+      <div class="hand left"></div>
+      <div class="hand right"></div>
+    </div>
+    <div class="hearts">
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Friendship Animation | Spread love & laughter!
+  </div>
+</body>
+</html>
